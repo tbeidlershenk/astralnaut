@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/background2.png" type="Texture" id=1]
+[ext_resource path="res://Assets/upheaval_font/upheavtt.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Resources/theme.tres" type="Theme" id=3]
+[ext_resource path="res://Scenes/Game-Scenes/Menu.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[node name="Menu" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 8, 8 )
+frames = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Title" type="Label" parent="."]
+margin_left = -272.0
+margin_top = -216.0
+margin_right = -163.0
+margin_bottom = -200.0
+rect_scale = Vector2( 5, 5 )
+custom_colors/font_color = Color( 0.117647, 0.968627, 0.968627, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Space Game"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="."]
+margin_left = -112.0
+margin_top = -72.0
+margin_right = 112.0
+margin_bottom = -24.0
+theme = ExtResource( 3 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Play"]
+margin_right = 112.0
+margin_bottom = 24.0
+rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 3 )
+text = "Play"
+align = 1
+valign = 1
+
+[node name="Settings" type="Button" parent="."]
+margin_left = -112.0
+margin_top = 24.0
+margin_right = 112.0
+margin_bottom = 72.0
+theme = ExtResource( 3 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Settings"]
+margin_right = 112.0
+margin_bottom = 24.0
+rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 3 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="Info" type="Label" parent="."]
+margin_left = -192.0
+margin_top = 152.0
+margin_right = 1.0
+margin_bottom = 232.0
+rect_scale = Vector2( 2, 2 )
+custom_colors/font_color = Color( 0.117647, 0.968627, 0.968627, 1 )
+custom_colors/font_outline_modulate = Color( 0.14902, 0.145098, 0.784314, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Game design & art:
+Tobias Beidler-Shenk"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="Play" to="." method="_on_Play_button_down"]
+[connection signal="button_down" from="Settings" to="." method="_on_Settings_button_down"]

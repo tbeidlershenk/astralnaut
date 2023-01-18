@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scenes/Components/Ammobar.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Components/Healthbar.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Game-Scenes/Main.gd" type="Script" id=3]
+[ext_resource path="res://Assets/background2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/upheaval_font/upheavtt.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Resources/theme.tres" type="Theme" id=7]
+[ext_resource path="res://Scenes/Entities/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Entities/Player.gd" type="Script" id=9]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.176471, 0.917647, 0.847059, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0627451, 0, 0.203922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.803922, 0.376471, 0.909804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.0627451, 0, 0.203922, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 6 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1.09673e-05, 1.52588e-05 )
+scale = Vector2( 8, 8 )
+z_index = -1
+texture = ExtResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+script = ExtResource( 9 )
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+margin_left = -384.0
+margin_top = -384.0
+margin_right = -184.0
+margin_bottom = -360.0
+theme = ExtResource( 7 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 200.0
+value = 200.0
+percent_visible = false
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ammobar" type="ProgressBar" parent="."]
+margin_left = -384.0
+margin_top = -344.0
+margin_right = -184.0
+margin_bottom = -320.0
+theme = ExtResource( 7 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+max_value = 600.0
+value = 600.0
+percent_visible = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clock" type="Label" parent="."]
+margin_left = 112.0
+margin_top = -384.0
+margin_right = 248.0
+margin_bottom = -369.0
+grow_horizontal = 0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 5 )
+text = "Time alive: 0:00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
