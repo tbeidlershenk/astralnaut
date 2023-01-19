@@ -9,7 +9,7 @@ var move_toward_target = true
 var states = [
 	'Offensive',
 	'Defensive',
-	'Back'
+	'Retreat'
 	]
 var curr_state = 'Offensive'
 var direction
@@ -17,25 +17,24 @@ var direction
 var health = 100
 var has_died = false
 var speed = 100
-var follow_dist = 200
+var follow_dist = 400
+var retreat_dist = 200
 var time_since_crash = 0
 var time_since_fire = 0
 var fire_rate = 30
 var bullet = preload("res://Scenes/Projectiles/Bullet.tscn")
+var just_collided = false
 
 func _ready():
 	target = get_node('/root/Main/Player')
 	spawn_locations = self.get_parent().spawn_locations
-	my_spawn = self.position
 	rng.randomize()
+	
+func init():
+	my_spawn = self.position
 	
 func _process(delta):
 	#print(self.name + " " + self.curr_state)
-	if target.position.y < self.position.y:
-		curr_state = 'Back'
-	else:
-		if curr_state != 'Defensive':
-			curr_state = 'Offensive'
 	update_self()
 	shoot_bullets()
 	time_since_crash += 1
@@ -43,28 +42,37 @@ func _process(delta):
 		handle_death()
 
 func update_self():
+	if just_collided:
+		curr_state = 'Defensive'
+		just_collided = false
+	var dist = (target.position - self.position).length()
 	if curr_state == 'Offensive':
 		var diff = target.position.x - self.position.x
-		# Already in-line
 		if abs(diff) < 10:
 			direction = Vector2()
-		# If player to the right
 		elif diff < 0:
 			direction = Vector2(-1,0)
-		# If player to the left
 		else:
 			direction = Vector2(1,0)
 		self.linear_velocity = speed * direction
-		if (target.position.y - self.position.y) > 300:
-			self.linear_velocity += speed * Vector2(0,1)
+		if dist > follow_dist:
+			direction += Vector2(0,1)
+		elif dist < retreat_dist:
+			curr_state = 'Retreat'
+			direction = Vector2(0,-1)
+	
 	# Move back to spawn
 	elif curr_state == 'Defensive':
-		self.linear_velocity = speed * direction
 		if (self.position - my_spawn).length() < 10:
 			curr_state = 'Offensive'
+	
 	# Move back
-	else:
-		direction = Vector2(0,-1)
+	elif curr_state == 'Retreat':
+		if dist > follow_dist:
+			curr_state = 'Offensive'
+	
+	# Update velocity
+	self.linear_velocity = speed * direction
 		
 	# Teleport back	
 	var out_x = self.position.x < bounds[0] or self.position.x > bounds[1]
@@ -105,8 +113,8 @@ func _on_Area2D_area_entered(area):
 	print('here')
 	if 'Enemy' in area.get_parent().name:
 		if self.position.y <= area.get_parent().position.y:
-			curr_state = 'Defensive'
 			var diff = my_spawn - self.position
 			direction = diff / diff.length()
+			just_collided = true
 			
 

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var has_died = false
-var health = 200
+var health = 200000
 var velocity = Vector2()
 var speed = 500
 var strafe_speed = 300
@@ -14,10 +14,11 @@ var can_crash = 0
 var missle_delay = 300
 var can_fire_missle = 0
 var crash_delay = 60
-var fire_delay = 10
-var ammo = 300
-var max_ammo = 600
-var ammo_cap = 20
+var fire_delay = 1
+var ammo = 30000
+var max_ammo = 60000
+var ammo_cap = 2000
+var ammo_regen = 2000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,7 +37,7 @@ func update_variables():
 	can_crash = max(can_crash-1, 0)
 	can_fire = max(can_fire-1, 0)
 	can_fire_missle = max(can_fire_missle-1, 0)
-	ammo = min(ammo+1, max_ammo)
+	ammo = min(ammo+ammo_regen, max_ammo)
 	
 func update_game_components():
 	var ammobar = self.get_parent().get_node('Ammobar')

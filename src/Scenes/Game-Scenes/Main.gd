@@ -1,11 +1,12 @@
 extends Node2D
 
+onready var anim = self.get_node("AnimatedSprite")
 var rng = RandomNumberGenerator.new()
 var game_time = 0
 var minutes_living = 0
 var seconds_living = 0
 var game_clock
-var difficulty = 5
+var difficulty = 8
 var max_difficulty = 10
 var spawns = [preload('res://Scenes/Entities/BasicEnemy.tscn'),
 			 preload('res://Scenes/Entities/BomberEnemy.tscn')]
@@ -20,14 +21,18 @@ var bounds_y = [bounds[1]/2, -bounds[1]/2]
 
 func _ready():
 	game_clock = self.get_node('Clock')
+	anim.animation = 'default'
+	anim.play()
 	
 func _physics_process(delta):
 	if game_time % 60 == 0:
 		if difficulty > rng.randi_range(0, max_difficulty-1):
 			print('adding enemy')
-			var enemy = spawns[rng.randi_range(0, len(spawns)-1)].instance()
+			#var enemy = spawns[rng.randi_range(0, len(spawns)-1)].instance()
+			var enemy = spawns[0].instance()
 			self.add_child(enemy)
 			enemy.position = spawn_locations[rng.randi_range(0, len(spawn_locations)-1)]
+			enemy.init()
 			if game_time % 600 == 0:
 				difficulty = min(difficulty+1, max_difficulty)
 				
