@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
+var damage = 0
 var has_died = false
-var health = 200000
+var health = 2000
 var velocity = Vector2()
 var speed = 500
 var strafe_speed = 300
@@ -107,27 +108,9 @@ func check_pos():
 		position.y = bounds_y[1]
 		
 func handle_collision(body):
-	if 'Enemy' in body.name and can_crash <= 0:
-		health = max(health-40, 0)
-		can_crash = crash_delay
-	elif 'Bullet' in body.name:
-		health = max(health-40, 0)
-	elif 'Bomber' in body.name:
-		health = 0
-	elif 'Missle' in body.name:
-		health = 0
+	health = max(health-body.damage, 0)
 	var healthbar = self.get_parent().get_node('Healthbar')
 	healthbar.value = health
 	
 func _on_Enemy_body_entered(body):
 	handle_collision(body)
-
-# NOT BEING USED	
-func apply_gravity():
-	if (get_node('/root/Main/GravitySource') != null):
-		var grav_pos = self.get_parent().get_node('GravitySource').position
-		var grav_strength = self.get_parent().get_node('GravitySource').get_node('GravityArea').gravity
-		var mag = (self.position-grav_pos).length()
-		var dir = (self.position - grav_pos) / mag
-		var multiplier = 1000/mag
-		gravity_vec = -(grav_strength * dir) * multiplier

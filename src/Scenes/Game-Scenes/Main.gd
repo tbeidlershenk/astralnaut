@@ -30,7 +30,7 @@ func _physics_process(delta):
 			print('adding enemy')
 			#var enemy = spawns[rng.randi_range(0, len(spawns)-1)].instance()
 			var enemy = spawns[0].instance()
-			self.add_child(enemy)
+			#self.add_child(enemy)
 			enemy.position = spawn_locations[rng.randi_range(0, len(spawn_locations)-1)]
 			enemy.init()
 			if game_time % 600 == 0:

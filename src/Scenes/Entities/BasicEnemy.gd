@@ -1,5 +1,6 @@
 extends Node2D
 
+var damage = 0
 var rng = RandomNumberGenerator.new()
 var bounds = [-450, 450]
 var spawn_locations
@@ -19,7 +20,6 @@ var has_died = false
 var speed = 100
 var follow_dist = 400
 var retreat_dist = 200
-var time_since_crash = 0
 var time_since_fire = 0
 var fire_rate = 30
 var bullet = preload("res://Scenes/Projectiles/Bullet.tscn")
@@ -37,7 +37,6 @@ func _process(delta):
 	#print(self.name + " " + self.curr_state)
 	update_self()
 	shoot_bullets()
-	time_since_crash += 1
 	if health <= 0:
 		handle_death()
 
@@ -94,18 +93,12 @@ func shoot_bullets():
 	time_since_fire = 0
 	
 func handle_collision(body):
-	if 'Bullet' in body.name:
-		health = max(health-10, 0)
-	elif 'Player' in body.name and time_since_crash > 60:
-		health = max(health-40, 0)
-	elif 'Missle' in body.name:
-		health = 0
-	time_since_crash = 0
+	health = max(health-body.damage, 0)
 	
 func handle_death():
 	has_died = true
 	var sprite = self.get_node('AnimatedSprite')
-	#sprite.animation = 'Death'
+	#sprite.animation = 'death'
 	#sprite.play()
 	self.queue_free()
 

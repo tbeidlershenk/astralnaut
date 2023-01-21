@@ -1,5 +1,6 @@
 extends Area2D
 
+var damage = 50
 var target
 onready var anim = self.get_node("AnimatedSprite")
 var collidables = ['Player', 

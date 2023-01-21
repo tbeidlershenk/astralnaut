@@ -34,10 +34,10 @@ position = Vector2( -24, 32 )
 [node name="Gun2" type="Node2D" parent="."]
 position = Vector2( 24, 32 )
 
-[node name="BasicEnemyArea" type="Area2D" parent="."]
+[node name="CollisionLine" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEnemyArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionLine"]
 shape = SubResource( 3 )
 
-[connection signal="area_entered" from="BasicEnemyArea" to="." method="_on_Area2D_area_entered"]
-[connection signal="area_exited" from="BasicEnemyArea" to="." method="_on_Area2D_area_exited"]
+[connection signal="area_entered" from="CollisionLine" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="CollisionLine" to="." method="_on_Area2D_area_exited"]

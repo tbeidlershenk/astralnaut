@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Components/Ammobar.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Healthbar.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Game-Scenes/Main.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Spriteframes/background_spriteframes.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://Scenes/Entities/SummonerEnemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/upheaval_font/upheavtt.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Resources/theme.tres" type="Theme" id=7]
 [ext_resource path="res://Scenes/Entities/Player.tscn" type="PackedScene" id=8]
@@ -83,3 +84,6 @@ text = "Time alive: 0:00"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SummonerEnemy" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -231 )

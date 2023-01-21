@@ -1,5 +1,6 @@
 extends Area2D
 
+var damage = 10
 var bullet_speed
 var remove_time = 200
 var time_alive = 0
