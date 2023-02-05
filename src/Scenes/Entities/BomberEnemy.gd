@@ -1,30 +1,27 @@
-extends Area2D
+extends "res://Scenes/Entities/Character.gd"
 
 var damage = 50
 var target
 var accel
 var velocity = Vector2()
-var time_alive = 0
-var lifespan = 300
-var exploded = false
-# Called when the node enters the scene tree for the first time.
+var remove_time = 300
+var parent = 'Enemy'
+
 func _ready():
+	# OVERRIDE
+	type = 'Enemy'
+	velocity = Vector2(0,100)
 	$AnimatedSprite.animation = 'default'
 	$AnimatedSprite.play()
 	target = self.get_parent().get_node('Player')
-	pass # Replace with function body.
-
+	curr_health = 1
+	
 func _process(delta):
-	if exploded: 
+	if has_died: 
 		return
-	if time_alive > lifespan:
-		explode()
+	if time_alive > remove_time:
+		handle_death()
 	pathfind(delta)
-	time_alive += 1
-
-func init(pos):
-	self.position = pos
-	self.velocity = Vector2(0,100)
 
 func pathfind(delta):
 	var dist = target.position - self.position
@@ -33,18 +30,20 @@ func pathfind(delta):
 	velocity += accel * delta
 	self.position += velocity * delta
 	
-func explode():
-	exploded = true
-	$AnimatedSprite.animation = 'death'
-	$AnimatedSprite.play()
-	yield($AnimatedSprite, 'animation_finished')
-	print('removed')
-	self.queue_free()
+# can remove once all death animations are implemented
+func handle_death():
+	has_died = true
+	$AnimatedSprite.animation = 'death'			# remove
+	$AnimatedSprite.play()						# remove
+	yield($AnimatedSprite, 'animation_finished')	# remove
+	.handle_death()
 	
-func _on_BomberEnemy_area_entered(area):
-	var src = area.get_parent()
-	if !exploded:
-		explode()
-	if 'Player' in src.name or 'Enemy' in src.name:
-		src.handle_collision(self)
+func level_up():
+	pass
+		
+func _on_BomberEnemy_body_entered(body):
+	if body.handle_collision(self):
+		curr_health = 0
+		if !has_died:
+			handle_death()
 		

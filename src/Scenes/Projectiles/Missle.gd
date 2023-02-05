@@ -1,52 +1,53 @@
-extends Area2D
+extends "res://Scenes/Projectiles/Projectile.gd"
 
-var damage = 50
 var target
-onready var anim = self.get_node("AnimatedSprite")
-var collidables = ['Player', 
-				  'Basic']
-var stages = {
+
+var states = {
 	'Deploying': Vector2(0, -20),
 	'Firing'   : Vector2(0, -2000),
 	'Exploding': Vector2(0, 0)
 	}
 
-var curr = 'Deploying'
-var velocity = Vector2(0,30)
-var time_alive = 0
+var curr_state = 'Deploying'
 
-func init(target, player_loc):
-	anim.animation = 'default'
-	self.position = player_loc + Vector2(0,75)
+func _ready():
+	._ready()
+	damage = 100
+	velocity = Vector2(0,30)
+	
+func init(src, target):
+	.init(src, src.position + Vector2(0,75))
 	self.target = target
-	anim.play()
+	$AnimatedSprite.animation = 'default'
+	$AnimatedSprite.play()
 	
 func _process(delta):
+	._process(delta)
 	update_missle(delta)
-	time_alive += 1
 	
-# Move missle based on stage
+# Move missle based on state
 func update_missle(delta):
 	# Update
-	if curr == 'Deploying' and self.velocity.y < 10:
-		curr = 'Firing'
+	if curr_state == 'Deploying' and self.velocity.y < 10:
+		curr_state = 'Firing'
 		
-	velocity += stages[curr] * delta
+	velocity += states[curr_state] * delta
 	self.position += velocity * delta
 		
 	# Check if miss
 	if self.position.y > 1000:
 		self.queue_free()
-
-func _on_Missle_area_entered(area):
-	for obj in collidables:
-		if obj in area.name:
-			area.get_parent().handle_collision(self)
-			curr = 'Exploding'
-			velocity = Vector2()
-			anim.animation = 'Death'
-			anim.play()
 			
 func _on_AnimatedSprite_animation_finished():
-	if anim.animation == 'Death':
+	if $AnimatedSprite.animation == 'Death':
 		self.queue_free()
+
+func _on_Missle_body_entered(body):
+	if "max_health" in body:
+		damage = body.max_health
+	if body.handle_collision(self):
+		curr_state = 'Exploding'
+		velocity = Vector2()
+		$AnimatedSprite.animation = 'Death'
+		$AnimatedSprite.play()
+		
