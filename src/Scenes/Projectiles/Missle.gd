@@ -39,15 +39,17 @@ func update_missle(delta):
 		self.queue_free()
 			
 func _on_AnimatedSprite_animation_finished():
-	if $AnimatedSprite.animation == 'Death':
+	if $AnimatedSprite.animation == 'death':
 		self.queue_free()
-
-func _on_Missle_body_entered(body):
-	if "max_health" in body:
-		damage = body.max_health
-	if body.handle_collision(self):
-		curr_state = 'Exploding'
-		velocity = Vector2()
-		$AnimatedSprite.animation = 'Death'
-		$AnimatedSprite.play()
 		
+func _on_Missle_area_entered(area):
+	if GlobalFuncs.check_character(area) == '':
+		return
+	if "max_health" in area:
+		damage = area.max_health
+	if area.handle_collision(self):
+		if curr_state != 'Exploding':
+			curr_state = 'Exploding'
+			velocity = Vector2()
+			$AnimatedSprite.animation = 'death'
+			$AnimatedSprite.play()

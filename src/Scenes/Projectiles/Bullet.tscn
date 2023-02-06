@@ -17,4 +17,5 @@ position = Vector2( 4, 4 )
 scale = Vector2( 8, 8 )
 texture = ExtResource( 1 )
 
-[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Bullet_area_entered"]

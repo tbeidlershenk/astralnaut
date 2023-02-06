@@ -4,10 +4,10 @@
 [ext_resource path="res://Scenes/Components/Healthbar.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Game-Scenes/Main.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Spriteframes/background_spriteframes.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://Scenes/Items/Items.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/upheaval_font/upheavtt.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Resources/theme.tres" type="Theme" id=7]
 [ext_resource path="res://Scenes/Entities/Player.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Components/Spawnpoints.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.176471, 0.917647, 0.847059, 1 )
@@ -37,12 +37,13 @@ frames = ExtResource( 4 )
 current = true
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
+position = Vector2( -1, 153 )
 
 [node name="Healthbar" type="ProgressBar" parent="."]
-margin_left = -384.0
-margin_top = -384.0
-margin_right = -184.0
-margin_bottom = -360.0
+margin_left = -386.0
+margin_top = 362.0
+margin_right = -186.0
+margin_bottom = 386.0
 theme = ExtResource( 7 )
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
@@ -55,10 +56,10 @@ __meta__ = {
 }
 
 [node name="Ammobar" type="ProgressBar" parent="."]
-margin_left = -384.0
-margin_top = -344.0
-margin_right = -184.0
-margin_bottom = -320.0
+margin_left = -386.0
+margin_top = 330.0
+margin_right = -186.0
+margin_bottom = 354.0
 theme = ExtResource( 7 )
 custom_styles/fg = SubResource( 3 )
 custom_styles/bg = SubResource( 4 )
@@ -83,5 +84,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spawnpoints" parent="." instance=ExtResource( 10 )]
-position = Vector2( 0, -250 )
+[node name="Wave" type="Label" parent="."]
+margin_left = 112.0
+margin_top = -352.0
+margin_right = 248.0
+margin_bottom = -337.0
+rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 7 )
+text = "Wave 1"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" parent="." instance=ExtResource( 5 )]
+position = Vector2( -396, 292 )
+scale = Vector2( 2, 2 )

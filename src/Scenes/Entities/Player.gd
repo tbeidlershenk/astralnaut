@@ -3,10 +3,15 @@ extends KinematicBody2D
 onready var healthbar = self.get_parent().get_node('Healthbar')
 var type = 'Player'
 var has_died = false
-var curr_health = 600
+var max_health = 600
+var curr_health = max_health
 var velocity = Vector2()
-var speed = 500
-var strafe_speed = 300
+var speeds = [
+	500,
+	800
+]
+var speed = speeds[0]
+var strafe_speed = 100 + speed/2
 var dir = 0
 var gravity_vec = Vector2()
 var bullet = preload("res://Scenes/Projectiles/Bullet.tscn")
@@ -21,6 +26,10 @@ var ammo = 3000
 var max_ammo = 6000
 var ammo_cap = 40
 var ammo_regen = 20
+var affect = 'no_item'
+var has_affect = 0
+var affect_time = 180
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,6 +48,9 @@ func update_variables():
 	can_crash = max(can_crash-1, 0)
 	can_fire = max(can_fire-1, 0)
 	can_fire_missle = max(can_fire_missle-1, 0)
+	has_affect = max(has_affect-1, 0)
+	if has_affect == 0:
+		remove_affect()
 	ammo = min(ammo+ammo_regen, max_ammo)
 	
 func update_game_components():
@@ -69,7 +81,8 @@ func handle_directional_input():
 func handle_other_input():
 	
 	var reg_attack = Input.is_action_pressed('ui_accept')
-	var missle_attack = Input.is_action_pressed('ui_select')
+	var missle_attack = Input.is_action_pressed('ui_special_attack')
+	var powerup = Input.is_action_pressed('ui_select')
 	
 	if reg_attack and can_fire <= 0 and ammo > max_ammo/ammo_cap:
 		var b1 = bullet.instance()
@@ -86,6 +99,8 @@ func handle_other_input():
 		self.get_parent().add_child(mis)
 		mis.init(self, mouse_pos)
 		can_fire_missle = missle_delay
+	if powerup:
+		get_parent().get_node('Items').most_recent_item()
 	
 func player_death():
 	has_died = true
@@ -108,10 +123,26 @@ func check_pos():
 	elif (position.y < bounds_y[1]):
 		position.y = bounds_y[1]
 		
+func apply_affect(affect):
+	self.affect = affect
+	has_affect = affect_time
+	if affect == 'speed':
+		speed = speeds[1]
+		strafe_speed = 100 + speed/2
+	elif affect == 'heal':
+		curr_health = max_health
+		healthbar.value = curr_health
+	
+func remove_affect():
+	affect = 'no_item'
+	speed = speeds[0]
+	strafe_speed = 100 + speed/2
+	
 func handle_collision(proj) -> bool:
 	if proj.parent in type:
 		return false
 	else:
-		curr_health = max(curr_health - proj.damage, 0)
-		healthbar.value = curr_health
+		if affect != 'invincibility':
+			curr_health = max(curr_health - proj.damage, 0)
+			healthbar.value = curr_health
 		return true

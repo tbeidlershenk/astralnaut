@@ -11,6 +11,7 @@ var bounds = [-400, 400]
 var type = 'Character'
 var spawn_loc = Vector2()
 var speed = 100
+var velocity = Vector2()
 var direction = Vector2()
 var max_health = 100
 var curr_health = 100
@@ -21,7 +22,7 @@ var move = true
 var level = 0
 var max_level = 10
 var time_alive = 1
-var levelup_rate = 500
+var levelup_rate = 1000
 var levelup_increase = 0.2
 
 func _ready():
@@ -35,12 +36,15 @@ func init(pos, level):
 	fire_rate /= mult
 	max_health *= mult
 	curr_health = max_health
+	$LevelBar.text = 'LVL ' + str(level)
+		
+	play_anim('spawn')
 	
 func _process(delta):
 	if has_died:
 		return
 	if !move:
-		self.linear_velocity = Vector2()
+		self.velocity = Vector2()
 	if curr_health <= 0:
 		handle_death()
 	if time_alive % levelup_rate == 0 and level < max_level:
@@ -53,21 +57,26 @@ func level_up():
 	fire_rate /= (1 + levelup_increase)
 	max_health *= (1 + levelup_increase)
 	curr_health = max_health
+	
 	$EnemyHealthbar.max_value = int(max_health)
 	$EnemyHealthbar.value = int(max_health)
+	$LevelBar.text = 'LVL ' + str(level)
+	
+	# Play level_up animation
+	play_anim('level_up')
 	
 func handle_death():
 	has_died = true
-	#$AnimatedSprite.animation = 'death'
-	#$AnimatedSprite.play()
-	#yield($AnimatedSprite, 'animation_finished')
+	play_anim('death')
+	$EnemyHealthbar.visible = false
+	$LevelBar.visible = false
+	yield($AnimatedSprite, 'animation_finished')
 	self.queue_free()
 	
-func teleport():
-	self.visible = false
-	self.position = spawn_loc
-	Spawnpoints.on_spawn(self)
-	
+func play_anim(anim) -> void:
+	$AnimatedSprite.animation = anim
+	$AnimatedSprite.play()
+
 func handle_collision(proj) -> bool:
 	if proj.parent in type:
 		return false

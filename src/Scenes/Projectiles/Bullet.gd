@@ -1,7 +1,7 @@
 extends "res://Scenes/Projectiles/Projectile.gd"
 
 var bullet_speed
-var remove_time = 300
+var remove_time = 400
 
 func _ready():
 	._ready()
@@ -22,7 +22,8 @@ func _process(delta):
 	else:
 		self.position = self.position + velocity * delta
 		
-# All objects collidable with bullets must implement handle_collision(Bullet)
-func _on_Bullet_body_entered(body):
-	if body.handle_collision(self):
+func _on_Bullet_area_entered(area):
+	if GlobalFuncs.check_character(area) == '':
+		return
+	if area.handle_collision(self):
 		self.queue_free()

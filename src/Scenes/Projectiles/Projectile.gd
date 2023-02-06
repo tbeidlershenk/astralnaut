@@ -1,5 +1,8 @@
 extends Area2D
 
+var enemy = load('res://Scenes/Entities/Character.gd')
+var player = load('res://Scenes/Entities/Player.gd')
+
 var time_alive = 0
 var velocity
 var damage

@@ -54,15 +54,15 @@ region = Rect2( 20, 20, 10, 10 )
 
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": false,
 "name": "Death",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -81,8 +81,3 @@ position = Vector2( 24, -40 )
 scale = Vector2( 8, 8 )
 frames = SubResource( 11 )
 animation = "Death"
-
-[node name="PlayerArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
-shape = SubResource( 1 )
