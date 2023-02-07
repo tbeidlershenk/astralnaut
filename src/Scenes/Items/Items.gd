@@ -27,14 +27,14 @@ func _on_item_click_input_event(viewport, event, shape_idx, slot) -> void:
 		var i = slots.find(slot)
 		if items[i] == 'no_item':
 			return
-		player.apply_affect(items[i])
+		player.stats.apply_affect(items[i])
 		play_anim(i, true)
 		items[i] = 'no_item'
 		
 func most_recent_item() -> void:
 	for i in range(3):
 		if items[2-i] != 'no_item':
-			player.apply_affect(items[2-i])
+			player.stats.apply_affect(items[2-i])
 			play_anim(2-i, true)
 			items[2-i] = 'no_item'
 			return

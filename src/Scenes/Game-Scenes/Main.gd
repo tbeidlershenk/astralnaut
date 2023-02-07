@@ -12,8 +12,8 @@ var diff_delay = 20
 var curr_wave = 0
 
 var spawns = [
-	preload('res://Scenes/Entities/BasicEnemy.tscn'),
-	preload('res://Scenes/Entities/SummonerEnemy.tscn')
+	preload('res://Scenes/Entities/Enemies/BasicEnemy.tscn'),
+	preload('res://Scenes/Entities/Enemies/SummonerEnemy.tscn')
 ]
 
 var points = [

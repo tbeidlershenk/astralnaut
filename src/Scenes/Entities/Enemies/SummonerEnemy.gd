@@ -1,6 +1,6 @@
-extends "res://Scenes/Entities/Character.gd"
+extends "res://Scenes/Entities/Enemies/Character.gd"
 
-var bomb = preload('res://Scenes/Entities/BomberEnemy.tscn')
+var bomb = preload('res://Scenes/Entities/Enemies/BomberEnemy.tscn')
 
 onready var target = get_tree().get_root().get_node('Main').get_node('Player')
 

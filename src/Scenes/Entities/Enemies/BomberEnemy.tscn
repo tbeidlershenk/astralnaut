@@ -1,67 +1,67 @@
 [gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://Scenes/Entities/BomberEnemy.gd" type="Script" id=1]
-[ext_resource path="res://Assets/enemybomber.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Components/EnemyHealthbar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/LevelBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/EnemyHealthbar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Components/LevelBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/enemybomber.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Entities/Enemies/BomberEnemy.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 18, 0, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 27, 0, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 36, 0, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 45, 0, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 9, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 9, 9, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 18, 9, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 27, 9, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 36, 9, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 45, 9, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 18, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 9, 18, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 3 )
 region = Rect2( 9, 0, 9, 9 )
 
 [sub_resource type="SpriteFrames" id=4]
@@ -83,7 +83,7 @@ animations = [ {
 } ]
 
 [node name="BomberEnemy" type="Area2D"]
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -94,10 +94,10 @@ scale = Vector2( 8, 8 )
 frames = SubResource( 4 )
 animation = "death"
 
-[node name="LevelBar" parent="." instance=ExtResource( 4 )]
+[node name="LevelBar" parent="." instance=ExtResource( 2 )]
 visible = false
 
-[node name="EnemyHealthbar" parent="." instance=ExtResource( 3 )]
+[node name="EnemyHealthbar" parent="." instance=ExtResource( 1 )]
 visible = false
 
 [connection signal="area_entered" from="." to="." method="_on_BomberEnemy_area_entered"]

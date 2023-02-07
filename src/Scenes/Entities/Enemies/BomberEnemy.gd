@@ -1,4 +1,4 @@
-extends "res://Scenes/Entities/Character.gd"
+extends "res://Scenes/Entities/Enemies/Character.gd"
 
 var damage = 50
 var target
@@ -35,12 +35,12 @@ func level_up():
 	pass
 		
 func _on_BomberEnemy_area_entered(area) -> void:
-	if GlobalFuncs.check_character(area) == 'Enemy':
+	if Global.check_character(area) == 'Enemy':
 		return
 	curr_health = 0
 	if !has_died:
 		handle_death()
 	else:
-		if GlobalFuncs.check_character(area) != 'Player':
+		if Global.check_character(area) != 'Player':
 			return
 		area.handle_collision(self)

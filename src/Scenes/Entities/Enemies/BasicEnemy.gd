@@ -1,4 +1,4 @@
-extends "res://Scenes/Entities/Character.gd"
+extends "res://Scenes/Entities/Enemies/Character.gd"
 
 var target
 var curr_state
@@ -83,7 +83,7 @@ func _on_SpaceArea_body_entered(body):
 			set_retreat()
 
 func _on_BasicEnemy_area_entered(area):
-	if GlobalFuncs.check_character(area) == '':
+	if Global.check_character(area) == '':
 		return
 	if not 'Enemy' in area.type:
 		return

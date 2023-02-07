@@ -13,7 +13,10 @@ func _ready():
 	pass # Replace with function body.
 
 func init(src, pos):
-	parent = src.type
+	if 'type' in src:
+		parent = src.type
+	else:
+		parent = src.stats.type
 	self.position = pos
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
