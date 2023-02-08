@@ -34,11 +34,11 @@ func _ready():
 	
 func _physics_process(delta):
 	if not get_node('Player').visible:
-		Transition.change_scene('res://Scenes/Game-Scenes/Menu.tscn')
+		Transition.change_scene('res://Scenes/Game-Scenes/DeathScreen.tscn')
+		Global.current_game_stats['time_alive'] = str(minutes_living) + ':' + str(seconds_living)
 	
 	# Every second:
 	if game_time % 60 == 0:
-		#print($Items.curr_items)
 		update_clock()
 		# Every 5 seconds:
 		if seconds_living % wave_delay == 0:
@@ -68,6 +68,7 @@ func spawn_wave():
 		
 	curr_wave += 1
 	$Wave.text = 'Wave ' + str(curr_wave)
+	Global.current_game_stats['current_wave'] += 1
 	
 func spawn_powerup():
 	pass

@@ -6,3 +6,4 @@ func change_scene(target_scene):
 	yield($AnimationPlayer, "animation_finished")
 	get_tree().change_scene(target_scene)
 	$AnimationPlayer.play_backwards('Fade')
+	
