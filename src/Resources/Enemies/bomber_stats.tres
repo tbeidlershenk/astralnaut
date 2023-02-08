@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Resources/Enemies/bomber_stats.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+type = "Enemy"
+max_health = 1
+base_speed = 100
+fire_rate = 1
+level = 0
+max_level = 0
+levelup_rate = 1
+levelup_increase = 1.0
+damage = 50
+accel_mult = 2000
+remove_time = 300

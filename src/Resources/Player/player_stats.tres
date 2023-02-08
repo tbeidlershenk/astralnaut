@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Resources/Player/player_stats.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+type = "Player"
+max_health = 600
+base_speed = 500
+fire_rate = 3
+missle_rate = 300
+max_ammo = 60
+ammo = 0
+regen_ammo = 0.1
+strafe_speed = 300

@@ -6,8 +6,8 @@
 [ext_resource path="res://Resources/Spriteframes/background_spriteframes.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://Scenes/Items/Items.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/upheaval_font/upheavtt.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Resources/theme.tres" type="Theme" id=7]
-[ext_resource path="res://Scenes/Entities/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Resources/Game/theme.tres" type="Theme" id=7]
+[ext_resource path="res://Scenes/Entities/Player/Player.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.176471, 0.917647, 0.847059, 1 )

@@ -43,7 +43,7 @@ func _on_AnimatedSprite_animation_finished():
 		self.queue_free()
 		
 func _on_Missle_area_entered(area):
-	if GlobalFuncs.check_character(area) == '':
+	if Global.check_character(area) == '':
 		return
 	if "max_health" in area:
 		damage = area.max_health

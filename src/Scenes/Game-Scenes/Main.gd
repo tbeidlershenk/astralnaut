@@ -12,8 +12,8 @@ var diff_delay = 20
 var curr_wave = 0
 
 var spawns = [
-	preload('res://Scenes/Entities/BasicEnemy.tscn'),
-	preload('res://Scenes/Entities/SummonerEnemy.tscn')
+	preload('res://Scenes/Entities/Enemies/BasicEnemy.tscn'),
+	preload('res://Scenes/Entities/Enemies/SummonerEnemy.tscn')
 ]
 
 var points = [
@@ -21,12 +21,6 @@ var points = [
 	Vector2(-100, -300),
 	Vector2(100, -300),
 	Vector2(300, -300)
-]
-
-var items = [
-	'heal',
-	'invincibility',
-	'speed'
 ]
 					
 var bounds = OS.get_window_size()
@@ -44,16 +38,15 @@ func _physics_process(delta):
 	
 	# Every second:
 	if game_time % 60 == 0:
-		print($Items.items)
+		#print($Items.curr_items)
 		update_clock()
 		# Every 5 seconds:
 		if seconds_living % wave_delay == 0:
 			spawn_wave()
 			spawn_chance = min(spawn_chance + 5, 100)
+			$Items.add_item(rng.randi_range(0,2))
 		if seconds_living % diff_delay == 0:
 			start_level += 1
-			var i = rng.randi_range(0,2)
-			$Items.add_item(items[i])
 
 			
 
@@ -64,14 +57,14 @@ func spawn_wave():
 	for key in points:
 		if rng.randi_range(0,100) < spawn_chance:
 			var mob = spawns[rng.randi_range(0,len(spawns)-1)].instance()
-			mob.init(key, start_level)
 			self.add_child(mob)
+			mob.init(key, start_level)
 			num_spawns += 1
 			
 	if num_spawns == 0:
 		var mob = spawns[rng.randi_range(0,len(spawns)-1)].instance()
-		mob.init(points[rng.randi_range(0, len(points)-1)], start_level)
 		self.add_child(mob)
+		mob.init(points[rng.randi_range(0, len(points)-1)], start_level)
 		
 	curr_wave += 1
 	$Wave.text = 'Wave ' + str(curr_wave)

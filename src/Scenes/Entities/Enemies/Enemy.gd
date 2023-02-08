@@ -1,32 +1,50 @@
 extends Node2D
 
+export var base_stats: Resource
+
+onready var target = get_tree().get_root().get_node('Main').get_node('Player')
 var rng = RandomNumberGenerator.new()
+
+# Base stats
+var type
+var base_speed
+var max_health
+var fire_rate
+var level
+var max_level
+var levelup_rate
+var levelup_increase
+
+# Other stats
+var has_died = false
+var curr_health
+var velocity = Vector2()
+var direction = Vector2()
+var spawn_loc = Vector2()
+var last_fire = 0
+var move = true
+var time_alive = 1
 var spawn_locations = [
 	Vector2(-300, -300),
 	Vector2(-100, -300),
 	Vector2(100, -300),
 	Vector2(300, -300),
 ]
-var bounds = [-400, 400]
-var type = 'Character'
-var spawn_loc = Vector2()
-var speed = 100
-var velocity = Vector2()
-var direction = Vector2()
-var max_health = 100
-var curr_health = 100
-var has_died = false
-var fire_rate = 100
-var last_fire = 0
-var move = true
-var level = 0
-var max_level = 10
-var time_alive = 1
-var levelup_rate = 1000
-var levelup_increase = 0.2
 
 func _ready():
 	rng.randomize()
+	init_stats()
+	
+func init_stats():
+	type = base_stats.type
+	base_speed = base_stats.base_speed
+	max_health = base_stats.max_health
+	fire_rate = base_stats.fire_rate
+	level = base_stats.level
+	max_level = base_stats.max_level
+	levelup_rate = base_stats.levelup_rate
+	levelup_increase = base_stats.levelup_increase
+	curr_health = max_health
 	
 func init(pos, level):
 	self.position = pos
@@ -37,7 +55,6 @@ func init(pos, level):
 	max_health *= mult
 	curr_health = max_health
 	$LevelBar.text = 'LVL ' + str(level)
-		
 	play_anim('spawn')
 	
 func _process(delta):

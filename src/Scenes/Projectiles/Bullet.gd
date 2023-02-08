@@ -23,7 +23,7 @@ func _process(delta):
 		self.position = self.position + velocity * delta
 		
 func _on_Bullet_area_entered(area):
-	if GlobalFuncs.check_character(area) == '':
+	if Global.check_character(area) == '':
 		return
 	if area.handle_collision(self):
 		self.queue_free()

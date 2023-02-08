@@ -1,18 +1,9 @@
-extends "res://Scenes/Entities/Character.gd"
+extends "res://Scenes/Entities/Enemies/Enemy.gd"
 
-var bomb = preload('res://Scenes/Entities/BomberEnemy.tscn')
-
-onready var target = get_tree().get_root().get_node('Main').get_node('Player')
+var bomb = preload('res://Scenes/Entities/Enemies/BomberEnemy.tscn')
 
 func _ready():
 	._ready()
-	type = 'Enemy'
-	curr_health = 100
-	max_health = 100
-	speed = 100
-	max_level = 5
-	direction = Vector2(-1, 0)
-	fire_rate = 1000
 	
 func _process(delta):
 	._process(delta)
@@ -26,14 +17,14 @@ func _process(delta):
 	if last_fire >= fire_rate:
 		summon()
 		return
-	elif self.position.x < bounds[0]:
+	elif self.position.x < Global.bounds[0]:
 		direction = Vector2(1,0)
-	elif self.position.x > bounds[1]:
+	elif self.position.x > Global.bounds[1]:
 		direction = Vector2(-1,0)
 	if !move:
 		self.velocity = Vector2()
 
-	self.velocity = direction * speed
+	self.velocity = direction * base_speed
 	self.position += self.velocity * delta
 
 func summon():

@@ -1,27 +1,20 @@
-extends "res://Scenes/Entities/Character.gd"
+extends "res://Scenes/Entities/Enemies/Enemy.gd"
 
-var target
+var bullet = preload("res://Scenes/Projectiles/Bullet.tscn")
+
 var curr_state
+var follow_dist
+var retreat_dist
+
 var states = [
 	'Offensive',
 	'Defensive',
 	'Retreat'
 	]
 	
-var follow_dist = 400
-var retreat_dist = 200
-var bullet = preload("res://Scenes/Projectiles/Bullet.tscn")
-
-func _ready():
-	._ready()
-	type = 'Enemy'
-	target = get_node('/root/Main/Player')
-	curr_health = 100
-	max_health = 100
-	speed = 100
-	fire_rate = 30
-	curr_state = 'Offensive'
-	
+func _ready() -> void:
+	init_stats()
+		
 func _process(delta):
 	._process(delta)
 	if has_died:
@@ -29,6 +22,12 @@ func _process(delta):
 	update_self(delta)
 	shoot_bullets()
 
+func init_stats():
+	.init_stats()
+	curr_state = base_stats.curr_state
+	follow_dist = base_stats.follow_dist
+	retreat_dist = base_stats.retreat_dist
+	
 func set_retreat():
 	curr_state = 'Defensive'
 	var diff = spawn_loc - self.position
@@ -54,7 +53,7 @@ func update_self(delta):
 		if (self.position - spawn_loc).length() < 10:
 			curr_state = 'Offensive'
 	
-	self.velocity = direction * speed
+	self.velocity = direction * base_speed
 	self.position += self.velocity * delta
 	
 	# Teleport back	
@@ -83,7 +82,7 @@ func _on_SpaceArea_body_entered(body):
 			set_retreat()
 
 func _on_BasicEnemy_area_entered(area):
-	if GlobalFuncs.check_character(area) == '':
+	if Global.check_character(area) == '':
 		return
 	if not 'Enemy' in area.type:
 		return
