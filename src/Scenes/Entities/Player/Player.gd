@@ -40,5 +40,5 @@ func handle_collision(proj) -> bool:
 	if proj.parent in $Stats.type:
 		return false
 	else:
-		$Stats.update_health(proj.damage)
+		$Stats.update_health(-proj.damage)
 		return true

@@ -1,7 +1,9 @@
 extends Node
 
+# Preloads
 var bullet = preload("res://Scenes/Projectiles/Bullet.tscn")
 var missle = preload("res://Scenes/Projectiles/Missle.tscn")
+
 onready var main = get_parent().get_parent()
 onready var player = get_parent()
 onready var ammobar = main.get_node('Ammobar')
@@ -57,10 +59,12 @@ func update_timers():
 		remove_affect()
 	ammo = min(ammo+regen_ammo, max_ammo)
 
-func update_health(damage):
-	if affect == 'invincibility':
+func update_health(amount):
+	if affect == null:
+		pass
+	elif affect.name == 'invincibility' and amount < 0:
 		return
-	curr_health = max(curr_health - damage, 0)
+	curr_health = max(min(curr_health + amount, max_health), 0)
 	
 func update_main():
 	ammobar.value = ammo
@@ -94,25 +98,28 @@ func handle_attack(reg, spec, item):
 		main.add_child(mis)
 		mis.init(get_parent(), mouse_pos)
 		can_missle = missle_rate
-	if item:
+	if item and affect == null:
 		main.get_node('Items').most_recent_item()
 
 func apply_affect(affect):
-	if affect == 'no_item':
+	if affect == null or has_affect > 0:
 		return
-	elif affect == 'heal':
-		pass
-	elif affect == 'speed':
-		pass
-	elif affect == 'invincibility':
-		pass
-	# change this, set based on duration
-	has_affect = affect_time
+	elif affect.name == 'heal':
+		has_affect = 60
+		update_health(affect.amount)
+	elif affect.name == 'speed':
+		has_affect = 60 * affect.duration
+		speed_mult = affect.multiplier
+	elif affect.name == 'invincibility':
+		has_affect = 60 * affect.duration
+	self.affect = affect
 
 func remove_affect():
-	if affect == 'speed':
+	if affect == null:
+		return
+	if affect.name == 'speed':
 		speed_mult = 1
-	affect = 'no_item'
+	affect = null
 
 func check_bounds():
 	# check x

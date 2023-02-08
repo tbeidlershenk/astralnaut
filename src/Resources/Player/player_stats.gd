@@ -1,9 +1,8 @@
-extends 'res://Resources/Player/CharacterStats.gd'
+extends 'res://Resources/character_stats.gd'
 
-class_name PlayerStats
+class_name player_stats
 
-export var affect: String
-export var fire_rate: int
+export var affect: Resource
 export var missle_rate: int
 export var max_ammo: int
 export var ammo: int

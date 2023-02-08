@@ -1,6 +1,6 @@
 extends Node
 
-var enemy = preload('res://Scenes/Entities/Enemies/Character.gd')
+var enemy = preload('res://Scenes/Entities/Enemies/Enemy.gd')
 var player = preload('res://Scenes/Entities/Player/Player.gd')
 
 var bounds = [400, -400]

@@ -1,12 +1,21 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Components/EnemyHealthbar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/LevelBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/enemybomber.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Entities/Enemies/BomberEnemy.gd" type="Script" id=4]
+[ext_resource path="res://Resources/Enemies/bomber_stats.tres" type="Resource" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 9, 9 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 9, 0, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 3 )
@@ -56,24 +65,16 @@ region = Rect2( 0, 18, 9, 9 )
 atlas = ExtResource( 3 )
 region = Rect2( 9, 18, 9, 9 )
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 9, 9 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 3 )
-region = Rect2( 9, 0, 9, 9 )
-
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
-"loop": false,
-"name": "death",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "spawn",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": false,
+"name": "death",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 5 ), SubResource( 6 ) ],
@@ -84,6 +85,7 @@ animations = [ {
 
 [node name="BomberEnemy" type="Area2D"]
 script = ExtResource( 4 )
+base_stats = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

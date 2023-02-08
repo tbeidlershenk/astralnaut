@@ -1,7 +1,7 @@
-extends "res://Scenes/Entities/Enemies/Character.gd"
+extends "res://Scenes/Entities/Enemies/Enemy.gd"
 
 var damage = 50
-var target
+var accel_mult = 2000
 var accel
 var remove_time = 300
 var parent = 'Enemy'
@@ -25,7 +25,7 @@ func _process(delta):
 func pathfind(delta):
 	var dist = target.position - self.position
 	var mag = target.position.distance_to(self.position)
-	accel = (2000/mag) * dist
+	accel = (accel_mult/mag) * dist
 	velocity += accel * delta
 	self.position += velocity * delta
 	

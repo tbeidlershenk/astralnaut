@@ -1,9 +1,30 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Components/EnemyHealthbar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/LevelBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/summoner-spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Entities/Enemies/SummonerEnemy.gd" type="Script" id=4]
+[ext_resource path="res://Resources/Enemies/summoner_stats.tres" type="Resource" id=5]
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 36, 9, 9 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 27, 27, 9, 9 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 18, 27, 9, 9 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 9, 27, 9, 9 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 3 )
@@ -16,10 +37,6 @@ region = Rect2( 18, 27, 9, 9 )
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 3 )
 region = Rect2( 27, 27, 9, 9 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 9, 9 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
@@ -45,24 +62,13 @@ region = Rect2( 0, 18, 9, 9 )
 atlas = ExtResource( 3 )
 region = Rect2( 9, 18, 9, 9 )
 
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 36, 9, 9 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 3 )
-region = Rect2( 27, 27, 9, 9 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 3 )
-region = Rect2( 18, 27, 9, 9 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 3 )
-region = Rect2( 9, 27, 9, 9 )
-
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 10 ) ],
+"loop": false,
+"name": "spawn",
+"speed": 10.0
+}, {
 "frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 10 ) ],
 "loop": false,
 "name": "level_up",
@@ -71,11 +77,6 @@ animations = [ {
 "frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": false,
 "name": "death",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 10 ) ],
-"loop": false,
-"name": "spawn",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 10 ) ],
@@ -89,6 +90,7 @@ radius = 32.0
 
 [node name="SummonerEnemy" type="Area2D"]
 script = ExtResource( 4 )
+base_stats = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 4, 4 )
