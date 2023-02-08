@@ -1,5 +1,14 @@
-## TODO
-1. Finish stat resources (Enemies)
-    - Change code in Character
-2. Bugfix code changes
-3. Create item resources
+### Todo
+
+- [x] Finish Stats resources (Enemies, Player)
+1. Update scripts
+2. Connect resources & set values
+- [x] Create item resources
+1. Update Items.gd
+2. Connect resources & set values
+- [ ] Death transition scene
+- Add to autoload
+
+### In Progress
+
+### Done ✓
