@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ship3.png-966a6de15ae8a12087266a11dd6bd8d4.stex"
+path="res://import/ship3.png-966a6de15ae8a12087266a11dd6bd8d4.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://Assets/ship3.png"
-dest_files=[ "res://.import/ship3.png-966a6de15ae8a12087266a11dd6bd8d4.stex" ]
+dest_files=[ "res://import/ship3.png-966a6de15ae8a12087266a11dd6bd8d4.stex" ]
 
 [params]
 

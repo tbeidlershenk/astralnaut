@@ -4,25 +4,17 @@ var bomb = preload('res://Scenes/Entities/Enemies/BomberEnemy.tscn')
 
 func _ready():
 	._ready()
+	direction = Vector2(1,0)
 	
 func _process(delta):
 	._process(delta)
 	if has_died:
 		return
 	last_fire += 1
-	if last_fire <= 40:
-		move = false
-	else:
-		move = true
 	if last_fire >= fire_rate:
 		summon()
-		return
-	elif self.position.x < Global.bounds[0]:
-		direction = Vector2(1,0)
-	elif self.position.x > Global.bounds[1]:
-		direction = Vector2(-1,0)
-	if !move:
-		self.velocity = Vector2()
+	if self.position.x > Global.bounds[0] or self.position.x < Global.bounds[1]:
+		direction = -direction
 
 	self.velocity = direction * base_speed
 	self.position += self.velocity * delta

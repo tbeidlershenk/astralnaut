@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/projectile.png-a06bb81b134194ca5b0d984041e0f3d3.stex"
+path="res://import/projectile.png-a06bb81b134194ca5b0d984041e0f3d3.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://Assets/projectile.png"
-dest_files=[ "res://.import/projectile.png-a06bb81b134194ca5b0d984041e0f3d3.stex" ]
+dest_files=[ "res://import/projectile.png-a06bb81b134194ca5b0d984041e0f3d3.stex" ]
 
 [params]
 

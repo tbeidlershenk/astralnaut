@@ -6,8 +6,9 @@
 - [x] Create item resources
 1. Update Items.gd
 2. Connect resources & set values
-- [ ] Death transition scene
-- Add to autoload
+- [x] Death transition scene
+- [x] Pausing functionality
+- [ ] Config file for settings
 
 ### In Progress
 

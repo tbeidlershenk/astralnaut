@@ -84,7 +84,8 @@ func level_up():
 	
 func handle_death():
 	has_died = true
-	Global.current_game_stats['enemies_killed'] += 1
+	if not 'Bomber' in name:
+		Global.enemies_killed += 1
 	play_anim('death')
 	$EnemyHealthbar.visible = false
 	$LevelBar.visible = false

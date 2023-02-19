@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemybomber.png-5e3b108e889f87ef84031bebb43f1bdd.stex"
+path="res://import/enemybomber.png-5e3b108e889f87ef84031bebb43f1bdd.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://Assets/enemybomber.png"
-dest_files=[ "res://.import/enemybomber.png-5e3b108e889f87ef84031bebb43f1bdd.stex" ]
+dest_files=[ "res://import/enemybomber.png-5e3b108e889f87ef84031bebb43f1bdd.stex" ]
 
 [params]
 

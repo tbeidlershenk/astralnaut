@@ -26,7 +26,7 @@ func handle_input():
 	$Stats.handle_attack(
 		Input.is_action_pressed('ui_accept'),
 		Input.is_action_pressed('ui_special_attack'),
-		Input.is_action_pressed('ui_select')
+		Input.is_action_pressed('ui_use_item')
 	)
 	
 func player_death():

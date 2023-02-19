@@ -5,15 +5,16 @@ var game_time = 0
 var minutes_living = 0
 var seconds_living = 0
 var num_spawns = 0
-var spawn_chance = 25
-var start_level = 1
-var wave_delay = 5
-var diff_delay = 20
+export var spawn_chance = 25
+export var start_level = 1
+export var wave_delay = 5
+export var diff_delay = 20
 var curr_wave = 0
 
 var spawns = [
-	preload('res://Scenes/Entities/Enemies/BasicEnemy.tscn'),
-	preload('res://Scenes/Entities/Enemies/SummonerEnemy.tscn')
+	#preload('res://Scenes/Entities/Enemies/BasicEnemy.tscn'),
+	#preload('res://Scenes/Entities/Enemies/SummonerEnemy.tscn'),
+	preload('res://Scenes/Entities/Enemies/ZapEnemy.tscn')
 ]
 
 var points = [
@@ -31,11 +32,14 @@ func _ready():
 	rng.randomize()
 	$AnimatedSprite.animation = 'default'
 	$AnimatedSprite.play()
+	Global.current_wave = 0
+	Global.enemies_killed = 0
 	
 func _physics_process(delta):
 	if not get_node('Player').visible:
+		Global.time_alive = 60 * minutes_living + seconds_living
+		Settings.update_stats(str(Global.difficulty))
 		Transition.change_scene('res://Scenes/Game-Scenes/DeathScreen.tscn')
-		Global.current_game_stats['time_alive'] = str(minutes_living) + ':' + str(seconds_living)
 	
 	# Every second:
 	if game_time % 60 == 0:
@@ -44,9 +48,9 @@ func _physics_process(delta):
 		if seconds_living % wave_delay == 0:
 			spawn_wave()
 			spawn_chance = min(spawn_chance + 5, 100)
-			$Items.add_item(rng.randi_range(0,2))
 		if seconds_living % diff_delay == 0:
 			start_level += 1
+			$Items.add_item(rng.randi_range(0,2))
 
 			
 
@@ -68,10 +72,7 @@ func spawn_wave():
 		
 	curr_wave += 1
 	$Wave.text = 'Wave ' + str(curr_wave)
-	Global.current_game_stats['current_wave'] += 1
-	
-func spawn_powerup():
-	pass
+	Global.current_wave += 1
 
 func update_clock():
 	seconds_living += 1
@@ -83,4 +84,3 @@ func update_clock():
 		text += '0'
 	text += str(seconds_living)
 	$Clock.text = text
-	

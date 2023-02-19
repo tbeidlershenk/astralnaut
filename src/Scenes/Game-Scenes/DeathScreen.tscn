@@ -90,6 +90,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HelperText" type="RichTextLabel" parent="."]
+margin_left = 64.0
+margin_top = 704.0
+margin_right = 384.0
+margin_bottom = 776.0
+theme = ExtResource( 2 )
+custom_colors/default_color = Color( 0.117647, 0.968627, 0.968627, 1 )
+custom_colors/font_color_shadow = Color( 0, 0.0156863, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Fade = SubResource( 1 )
 anims/RESET = SubResource( 2 )

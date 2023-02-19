@@ -48,6 +48,8 @@ func _on_Missle_area_entered(area):
 	if "max_health" in area:
 		damage = area.max_health
 	if area.handle_collision(self):
+		if 'Bomber' in area.name:
+			return
 		if curr_state != 'Exploding':
 			curr_state = 'Exploding'
 			velocity = Vector2()
