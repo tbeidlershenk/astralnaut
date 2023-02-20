@@ -26,10 +26,6 @@ region = Rect2( 30, 30, 10, 10 )
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 10, 10 )
-
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 40, 10, 10 )
@@ -74,17 +70,16 @@ region = Rect2( 0, 20, 10, 10 )
 atlas = ExtResource( 4 )
 region = Rect2( 10, 20, 10, 10 )
 
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 10, 10 )
+
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 20 ) ],
 "loop": false,
 "name": "level_up",
 "speed": 10.0
-}, {
-"frames": [ SubResource( 19 ) ],
-"loop": true,
-"name": "default",
-"speed": 0.0
 }, {
 "frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 20 ) ],
 "loop": false,
@@ -95,6 +90,11 @@ animations = [ {
 "loop": false,
 "name": "death",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 19 ) ],
+"loop": true,
+"name": "default",
+"speed": 0.0
 } ]
 
 [sub_resource type="CircleShape2D" id=1]

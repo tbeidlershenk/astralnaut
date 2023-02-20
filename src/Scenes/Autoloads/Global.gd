@@ -19,4 +19,6 @@ func check_character(area) -> String:
 		return 'Player'
 	else:
 		return ''
+		
+
 

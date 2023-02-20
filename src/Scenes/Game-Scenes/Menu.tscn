@@ -81,6 +81,9 @@ custom_fonts/font = SubResource( 3 )
 text = "Settings"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Info" type="Label" parent="."]
 margin_left = -192.0

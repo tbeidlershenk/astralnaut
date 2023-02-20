@@ -56,12 +56,6 @@ func update_self(delta):
 	self.velocity = direction * base_speed
 	self.position += self.velocity * delta
 	
-	# Teleport back	
-	#var out_x = self.position.x < bounds[0] or self.position.x > bounds[1]
-	#var out_y = self.position.y > bounds[1]
-	#if out_x or out_y:
-		#teleport()
-	
 func shoot_bullets():
 	var in_range = abs(target.position.x - self.position.x) < 40
 	if !(in_range and last_fire > fire_rate):

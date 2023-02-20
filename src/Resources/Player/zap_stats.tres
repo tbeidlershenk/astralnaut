@@ -5,11 +5,11 @@
 [resource]
 script = ExtResource( 1 )
 type = "Enemy"
-max_health = 300
-base_speed = 400
-fire_rate = 300
+max_health = 100
+base_speed = 200
+fire_rate = 10
 level = 1
 max_level = 5
 levelup_rate = 500
-levelup_increase = 0.2
+levelup_increase = 0.1
 damage = 100

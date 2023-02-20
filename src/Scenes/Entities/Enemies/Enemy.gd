@@ -42,8 +42,8 @@ func init_stats():
 	fire_rate = base_stats.fire_rate
 	level = base_stats.level
 	max_level = base_stats.max_level
-	levelup_rate = base_stats.levelup_rate
-	levelup_increase = base_stats.levelup_increase
+	levelup_rate = base_stats.levelup_rate * Global.difficulty
+	levelup_increase = base_stats.levelup_increase * Global.difficulty
 	curr_health = max_health
 	
 func init(pos, level):

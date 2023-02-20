@@ -11,11 +11,11 @@ export var wave_delay = 5
 export var diff_delay = 20
 var curr_wave = 0
 
-var spawns = [
-	#preload('res://Scenes/Entities/Enemies/BasicEnemy.tscn'),
-	#preload('res://Scenes/Entities/Enemies/SummonerEnemy.tscn'),
-	preload('res://Scenes/Entities/Enemies/ZapEnemy.tscn')
-]
+var spawns = {
+	preload('res://Scenes/Entities/Enemies/BasicEnemy.tscn'): 1,
+	preload('res://Scenes/Entities/Enemies/SummonerEnemy.tscn'): 0.5,
+	preload('res://Scenes/Entities/Enemies/ZapEnemy.tscn'): 0.2
+}
 
 var points = [
 	Vector2(-300, -300),
@@ -60,20 +60,29 @@ func spawn_wave():
 	var num_spawns = 0
 	for key in points:
 		if rng.randi_range(0,100) < spawn_chance:
-			var mob = spawns[rng.randi_range(0,len(spawns)-1)].instance()
-			self.add_child(mob)
+			var mob = random_mob()
 			mob.init(key, start_level)
 			num_spawns += 1
 			
 	if num_spawns == 0:
-		var mob = spawns[rng.randi_range(0,len(spawns)-1)].instance()
-		self.add_child(mob)
+		var mob = random_mob()
 		mob.init(points[rng.randi_range(0, len(points)-1)], start_level)
 		
 	curr_wave += 1
 	$Wave.text = 'Wave ' + str(curr_wave)
 	Global.current_wave += 1
 
+func random_mob():
+	var num = rng.randf_range(0,1)
+	var mob = preload('res://Scenes/Entities/Enemies/BasicEnemy.tscn')
+	for m in spawns:
+		if spawns[m] < num:
+			break
+		mob = m 
+	mob = mob.instance()
+	self.add_child(mob)
+	return mob
+	
 func update_clock():
 	seconds_living += 1
 	if seconds_living == 60:

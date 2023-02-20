@@ -15,16 +15,18 @@ onready var labels = [
 var msgs
 
 func _ready() -> void:
+	var seconds = Global.time_alive % 60
+	if seconds < 10:
+		seconds = '0' + str(seconds)
+	else:
+		seconds = str(seconds)	
 	msgs = [
 	'You died...',
-	'Time alive: ' + str(Global.time_alive/60) + ':' + str(Global.time_alive % 60),
+	'Time alive: ' + str(Global.time_alive/60) + ':' + seconds,
 	'Wave reached: ' + str(Global.current_wave),
 	'Enemies killed: ' + str(Global.enemies_killed),
 	'Press r to play again\nPress space for main menu'
 	]
-	#Global.current_game_stats['time_alive'] = 0
-	#Global.current_game_stats['current_wave'] = 1
-	#Global.current_game_stats['enemies_killed'] = 0
 	
 func _physics_process(delta) -> void:
 	if Input.is_action_pressed("ui_accept"):

@@ -69,11 +69,6 @@ animations = [ {
 "name": "level_up",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 10 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 10 ) ],
 "loop": false,
 "name": "spawn",
@@ -83,6 +78,11 @@ animations = [ {
 "loop": false,
 "name": "death",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=3]

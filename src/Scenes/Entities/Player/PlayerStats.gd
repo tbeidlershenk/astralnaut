@@ -29,7 +29,7 @@ var has_died = false
 var curr_health
 var can_fire = 0
 var can_missle = 0
-var speed_mult = 1
+var fire_mult = 1
 
 # REMOVE THESE
 var has_affect = 0
@@ -65,6 +65,16 @@ func update_health(amount):
 	elif affect.name == 'invincibility' and amount < 0:
 		return
 	curr_health = max(min(curr_health + amount, max_health), 0)
+	player.get_node('AnimatedSprite').animation = 'damage'
+	player.get_node('AnimatedSprite').play()
+	yield(player.get_node('AnimatedSprite'), "animation_finished")
+	if curr_health < max_health * 0.2:
+		player.get_node('AnimatedSprite').animation = 'near_death'
+		player.get_node('AnimatedSprite').play()
+	else:
+		player.get_node('AnimatedSprite').animation = 'default'
+		player.get_node('AnimatedSprite').play()
+		
 	
 func update_main():
 	ammobar.value = ammo
@@ -80,9 +90,8 @@ func handle_movement(right, left, up, down):
 		velocity.x = strafe_speed
 	if left: 
 		velocity.x -= strafe_speed
-	velocity *= speed_mult
 
-func handle_attack(reg, spec, item):
+func handle_attack(reg, spec, use_item):
 	if reg and can_fire <= 0 and ammo > 0:
 		var b1 = bullet.instance()
 		var b2 = bullet.instance()
@@ -98,7 +107,7 @@ func handle_attack(reg, spec, item):
 		main.add_child(mis)
 		mis.init(get_parent(), mouse_pos)
 		can_missle = missle_rate
-	if item and affect == null:
+	if use_item and affect == null:
 		main.get_node('Items').most_recent_item()
 
 func apply_affect(affect):
@@ -109,7 +118,9 @@ func apply_affect(affect):
 		update_health(affect.amount)
 	elif affect.name == 'speed':
 		has_affect = 60 * affect.duration
-		speed_mult = affect.multiplier
+		print('fire rate increase')
+		fire_rate /= affect.multiplier
+		regen_ammo *= affect.multiplier
 	elif affect.name == 'invincibility':
 		has_affect = 60 * affect.duration
 	self.affect = affect
@@ -118,7 +129,8 @@ func remove_affect():
 	if affect == null:
 		return
 	if affect.name == 'speed':
-		speed_mult = 1
+		fire_rate *= affect.multiplier
+		regen_ammo /= affect.multiplier
 	affect = null
 
 func check_bounds():
@@ -130,5 +142,5 @@ func check_bounds():
 	# check y
 	if (player.position.y > Global.bounds[0]):
 		player.position.y = Global.bounds[0]
-	elif (player.position.y < Global.bounds[1]):
-		player.position.y = Global.bounds[1]
+	elif (player.position.y < Global.bounds[1]+200):
+		player.position.y = Global.bounds[1]+200

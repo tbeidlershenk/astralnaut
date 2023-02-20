@@ -5,6 +5,7 @@ onready var music_slider = get_node("VBoxContainer/Music/HScrollBar")
 onready var sfx_slider = get_node("VBoxContainer/SFX/HScrollBar")
 
 func _ready():
+	Settings.load_settings()
 	$AnimatedSprite.animation = 'default'
 	$AnimatedSprite.play()
 	var diff = int(Global.difficulty)
@@ -31,3 +32,7 @@ func _on_audio_changed(value, source):
 func _input(event):
 	if (event is InputEventKey):
 		Transition.change_scene('res://Scenes/Game-Scenes/Menu.tscn')
+
+
+func _on_SettingsScreen_tree_exiting():
+	Settings.save_settings()

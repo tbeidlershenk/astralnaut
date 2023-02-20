@@ -11,4 +11,4 @@ fire_rate = 1000
 level = 0
 max_level = 5
 levelup_rate = 1000
-levelup_increase = 0.2
+levelup_increase = 0.1

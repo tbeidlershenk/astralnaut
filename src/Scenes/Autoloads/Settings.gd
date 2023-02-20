@@ -4,7 +4,7 @@ const CONFIG_PATH = "res://Saved/config.cfg"
 const STATS_PATH = "res://Saved/stats.cfg"
 
 var config_file = ConfigFile.new()
-var settings = {
+onready var settings = {
 	"audio": {
 		"music_level": Global.music_level,
 		"sfx_level": Global.sfx_level
@@ -15,10 +15,6 @@ var settings = {
 }
 var stats_file = ConfigFile.new()
 var stats
-
-func _ready():
-	save_settings()
-	load_settings()
 
 func save_settings():
 	settings = {

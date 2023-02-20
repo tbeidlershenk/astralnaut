@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/Entities/Enemies/ZapEnemy.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Player/zap_stats.tres" type="Resource" id=2]
@@ -6,10 +6,7 @@
 [ext_resource path="res://Assets/basic_enemy-spritesheet.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/Components/EnemyHealthbar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/LevelBar.tscn" type="PackedScene" id=6]
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 9, 9 )
+[ext_resource path="res://Assets/zap_lasers.png" type="Texture" id=7]
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
@@ -59,13 +56,12 @@ region = Rect2( 0, 20, 10, 10 )
 atlas = ExtResource( 4 )
 region = Rect2( 10, 20, 10, 10 )
 
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 9, 9 )
+
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ SubResource( 2 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 3 ) ],
 "loop": false,
 "name": "spawn",
@@ -74,11 +70,42 @@ animations = [ {
 "frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
 "name": "death",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "default",
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 7 )
+region = Rect2( 200, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 200, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 7 )
+region = Rect2( 200, 200, 200, 200 )
+
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": false,
+"name": "zap_warn",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": false,
+"name": "zap_actual",
+"speed": 10.0
+}, {
 "frames": [  ],
 "loop": true,
 "name": "default",
@@ -101,18 +128,17 @@ scale = Vector2( 8, 8 )
 frames = SubResource( 9 )
 
 [node name="ZapAnim" type="AnimatedSprite" parent="."]
+scale = Vector2( 8, 8 )
 frames = SubResource( 16 )
 
 [node name="Diagonals" type="Area2D" parent="."]
 
 [node name="Diag1" type="CollisionShape2D" parent="Diagonals"]
 rotation = 0.785398
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Diag2" type="CollisionShape2D" parent="Diagonals"]
 rotation = -0.785398
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -131,3 +157,4 @@ margin_right = 30.0
 margin_bottom = -30.0
 
 [connection signal="area_entered" from="Diagonals" to="." method="_on_Diagonals_area_entered"]
+[connection signal="body_entered" from="Diagonals" to="." method="_on_Diagonals_body_entered"]
