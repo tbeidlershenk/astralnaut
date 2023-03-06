@@ -8,4 +8,10 @@
 - Created pixelart for sprite & background animations
 - Managed a mid-sized project using Git
 
+### Gameplay Screenshots
+---
+<img src="gameplay_1.png" alt= “” width="300" height="300">
+<img src="gameplay_2.png" alt= “” width="300" height="300">
+<img src="death_screen.png" alt= “” width="300" height="300">
+
 ### [Link to Itch.io](https://tbeidlershenk.itch.io/astralnaut)
