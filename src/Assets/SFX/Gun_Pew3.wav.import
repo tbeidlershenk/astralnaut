@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Gun_Pew3.wav-a1d7d2e52609d653fe9dc87035de455f.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Gun_Pew3.wav"
+dest_files=[ "res://.import/Gun_Pew3.wav-a1d7d2e52609d653fe9dc87035de455f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

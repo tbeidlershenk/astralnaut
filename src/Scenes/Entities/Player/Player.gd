@@ -31,6 +31,7 @@ func handle_input():
 	
 func player_death():
 	$Stats.has_died = true
+	$MusicPlayer.play_stream(false, 'res://Assets/SFX/Player_Hit3.wav')
 	$AnimatedSprite.animation = 'Death'
 	$AnimatedSprite.play()
 	yield($AnimatedSprite, 'animation_finished')

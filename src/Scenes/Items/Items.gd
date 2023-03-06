@@ -38,7 +38,8 @@ func most_recent_item() -> void:
 		if curr_items[2-i] == null:
 			continue
 		else:
-			player.stats.apply_affect(curr_items[i])
+			player.stats.apply_affect(curr_items[2-i])
+			print('Applied' + curr_items[2-i].name)
 			play_anim(2-i, true)
 			curr_items[2-i] = null
 			return

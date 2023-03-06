@@ -40,6 +40,9 @@ func _process(delta):
 
 func fire():
 	print('fire')
+	### PLACEHOLDER - add in laser SFX
+	$MusicPlayer.play_stream(false, 'res://Assets/SFX/Player_Hit5.wav')
+	
 	$ZapAnim.animation = 'zap_warn'
 	$ZapAnim.play()
 	yield($ZapAnim, 'animation_finished')

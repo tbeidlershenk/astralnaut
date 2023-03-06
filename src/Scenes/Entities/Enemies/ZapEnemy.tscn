@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scenes/Entities/Enemies/ZapEnemy.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Player/zap_stats.tres" type="Resource" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Components/EnemyHealthbar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/LevelBar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/zap_lasers.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Autoloads/Sounds.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
@@ -78,14 +79,6 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 200, 200 )
-
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 7 )
-region = Rect2( 200, 0, 200, 200 )
-
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 7 )
 region = Rect2( 0, 200, 200, 200 )
@@ -94,16 +87,24 @@ region = Rect2( 0, 200, 200, 200 )
 atlas = ExtResource( 7 )
 region = Rect2( 200, 200, 200, 200 )
 
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 7 )
+region = Rect2( 200, 0, 200, 200 )
+
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
-"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ) ],
-"loop": false,
-"name": "zap_warn",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ), SubResource( 21 ) ],
 "loop": false,
 "name": "zap_actual",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": false,
+"name": "zap_warn",
 "speed": 10.0
 }, {
 "frames": [  ],
@@ -155,6 +156,8 @@ margin_left = -30.0
 margin_top = -63.0
 margin_right = 30.0
 margin_bottom = -30.0
+
+[node name="MusicPlayer" parent="." instance=ExtResource( 8 )]
 
 [connection signal="area_entered" from="Diagonals" to="." method="_on_Diagonals_area_entered"]
 [connection signal="body_entered" from="Diagonals" to="." method="_on_Diagonals_body_entered"]

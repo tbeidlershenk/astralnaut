@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Components/EnemyHealthbar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/LevelBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/enemybomber.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Entities/Enemies/BomberEnemy.gd" type="Script" id=4]
 [ext_resource path="res://Resources/Enemies/bomber_stats.tres" type="Resource" id=5]
+[ext_resource path="res://Scenes/Autoloads/Sounds.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
@@ -101,6 +102,8 @@ visible = false
 
 [node name="EnemyHealthbar" parent="." instance=ExtResource( 1 )]
 visible = false
+
+[node name="MusicPlayer" parent="." instance=ExtResource( 6 )]
 
 [connection signal="area_entered" from="." to="." method="_on_BomberEnemy_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_BomberEnemy_area_entered"]

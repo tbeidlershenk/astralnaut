@@ -68,6 +68,7 @@ func shoot_bullets():
 	b1.init(self, self.get_node('Gun1').get_global_position())
 	b2.init(self, self.get_node('Gun2').get_global_position()) 
 	last_fire = 0
+	$MusicPlayer.play_stream(false, 'res://Assets/SFX/Gun_Pew2.wav')
 
 # Retreat
 func _on_SpaceArea_body_entered(body):

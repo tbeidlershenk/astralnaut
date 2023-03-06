@@ -42,8 +42,8 @@ func init_stats():
 	fire_rate = base_stats.fire_rate
 	level = base_stats.level
 	max_level = base_stats.max_level
-	levelup_rate = base_stats.levelup_rate * Global.difficulty
-	levelup_increase = base_stats.levelup_increase * Global.difficulty
+	levelup_rate = base_stats.levelup_rate * int(Global.difficulty)
+	levelup_increase = base_stats.levelup_increase * int(Global.difficulty)
 	curr_health = max_health
 	
 func init(pos, level):
@@ -87,6 +87,7 @@ func handle_death():
 	if not 'Bomber' in name:
 		Global.enemies_killed += 1
 	play_anim('death')
+	$MusicPlayer.play_stream(false, 'res://Assets/SFX/Enemy_Dead2.wav')
 	$EnemyHealthbar.visible = false
 	$LevelBar.visible = false
 	yield($AnimatedSprite, 'animation_finished')
@@ -100,6 +101,7 @@ func handle_collision(proj) -> bool:
 	if proj.parent in type:
 		return false
 	else:
+		$MusicPlayer.play_stream(false, 'res://Assets/SFX/Enemy_Hit1.wav')
 		curr_health = max(curr_health - proj.damage, 0)
 		$EnemyHealthbar.value = int(curr_health)
 		return true

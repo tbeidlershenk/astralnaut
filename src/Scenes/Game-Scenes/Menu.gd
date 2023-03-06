@@ -6,11 +6,14 @@ func _ready():
 	$AnimatedSprite.play()
 
 func _on_Play_button_down():
+	$MusicPlayer.play_stream(false, 'res://Assets/SFX/Selection_Confirm.wav')
 	Transition.change_scene('res://Scenes/Game-Scenes/Main.tscn')
 
 func _on_Settings_button_down():
+	$MusicPlayer.play_stream(false, 'res://Assets/SFX/Selection_Confirm.wav')
 	Transition.change_scene('res://Scenes/Game-Scenes/SettingsScreen.tscn')
 
 func _on_Menu_tree_entered():
-	#Settings.save_settings()
+	### PLACEHOLDER - add in BGM
+	MusicPlayer.play_stream(true, 'res://Assets/SFX/Player_Hit5.wav')
 	pass

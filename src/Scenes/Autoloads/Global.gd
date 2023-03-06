@@ -4,8 +4,8 @@ var enemy = preload('res://Scenes/Entities/Enemies/Enemy.gd')
 var player = preload('res://Scenes/Entities/Player/Player.gd')
 
 export var difficulty = 1
-export var music_level = 100
-export var sfx_level = 100
+export var music_level = 20
+export var sfx_level = 20
 var time_alive = 0
 var current_wave = 1
 var enemies_killed = 0

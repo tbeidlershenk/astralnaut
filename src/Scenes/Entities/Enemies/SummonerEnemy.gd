@@ -31,3 +31,5 @@ func summon():
 	b2.init(self.get_node('Spawn2').get_global_position(), 1)
 	# Update variables
 	last_fire = 0
+	### PLACEHOLDER - add in summon SFX
+	$MusicPlayer.play_stream(false, 'res://Assets/SFX/Gun_Pew2.wav')

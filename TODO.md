@@ -8,7 +8,8 @@
 2. Connect resources & set values
 - [x] Death transition scene
 - [x] Pausing functionality
-- [ ] Config file for settings
+- [x] Config file for settings
+
 
 ### In Progress
 

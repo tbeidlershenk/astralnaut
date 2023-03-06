@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Resources/Spriteframes/background_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Resources/upheavtt.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Resources/Game/theme.tres" type="Theme" id=3]
 [ext_resource path="res://Scenes/Game-Scenes/Menu.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Autoloads/Sounds.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
@@ -95,11 +96,16 @@ custom_colors/font_color = Color( 0.117647, 0.968627, 0.968627, 1 )
 custom_colors/font_outline_modulate = Color( 0.14902, 0.145098, 0.784314, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Game design & art:
-Tobias Beidler-Shenk"
+Tobias Beidler-Shenk
+
+Music & SFX:
+Kyle Holm"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MusicPlayer" parent="." instance=ExtResource( 5 )]
 
 [connection signal="tree_entered" from="." to="." method="_on_Menu_tree_entered"]
 [connection signal="button_down" from="Play" to="." method="_on_Play_button_down"]

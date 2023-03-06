@@ -51,6 +51,7 @@ func _on_Missle_area_entered(area):
 		if 'Bomber' in area.name:
 			return
 		if curr_state != 'Exploding':
+			$MusicPlayer.play_stream(false, 'res://Assets/SFX/Player_Hit5.wav')
 			curr_state = 'Exploding'
 			velocity = Vector2()
 			$AnimatedSprite.animation = 'death'

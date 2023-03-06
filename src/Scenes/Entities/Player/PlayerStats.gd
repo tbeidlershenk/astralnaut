@@ -101,19 +101,23 @@ func handle_attack(reg, spec, use_item):
 		b2.init(get_parent(), get_parent().get_node('Gun2').get_global_position())
 		ammo -= 1
 		can_fire = fire_rate
+		player.get_node('MusicPlayer').play_stream(false, 'res://Assets/SFX/Gun_Pew.wav')
 	if spec and can_missle <= 0:
 		var mouse_pos = get_viewport().get_mouse_position()
 		var mis = missle.instance()
 		main.add_child(mis)
 		mis.init(get_parent(), mouse_pos)
 		can_missle = missle_rate
+		player.get_node('MusicPlayer').play_stream(false, 'res://Assets/SFX/Gun_Pew.wav')
 	if use_item and affect == null:
+		player.get_node('MusicPlayer').play_stream(false, 'res://Assets/SFX/Selection_Confirm.wav')
 		main.get_node('Items').most_recent_item()
 
 func apply_affect(affect):
+	self.affect = affect
 	if affect == null or has_affect > 0:
 		return
-	elif affect.name == 'heal':
+	if affect.name == 'heal':
 		has_affect = 60
 		update_health(affect.amount)
 	elif affect.name == 'speed':
@@ -123,7 +127,6 @@ func apply_affect(affect):
 		regen_ammo *= affect.multiplier
 	elif affect.name == 'invincibility':
 		has_affect = 60 * affect.duration
-	self.affect = affect
 
 func remove_affect():
 	if affect == null:

@@ -30,9 +30,12 @@ func _ready() -> void:
 	
 func _physics_process(delta) -> void:
 	if Input.is_action_pressed("ui_accept"):
+		$MusicPlayer.play_stream(false, 'res://Assets/SFX/Selection_Confirm.wav')
 		Transition.change_scene('res://Scenes/Game-Scenes/Menu.tscn')
 	elif Input.is_action_pressed("ui_restart"):
+		$MusicPlayer.play_stream(false, 'res://Assets/SFX/Selection_Confirm.wav')
 		Transition.change_scene('res://Scenes/Game-Scenes/Main.tscn')
+		MusicPlayer.play_stream(true, 'res://Assets/SFX/main_BGM.mp3')
 	elif time % anim_speed == 0 and !done:
 		next_character()
 	time += 1
