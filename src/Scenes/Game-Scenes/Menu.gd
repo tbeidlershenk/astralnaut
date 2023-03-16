@@ -14,6 +14,5 @@ func _on_Settings_button_down():
 	Transition.change_scene('res://Scenes/Game-Scenes/SettingsScreen.tscn')
 
 func _on_Menu_tree_entered():
-	### PLACEHOLDER - add in BGM
-	MusicPlayer.play_stream(true, 'res://Assets/SFX/Player_Hit5.wav')
-	pass
+	MusicPlayer.play_stream(true, 'res://Assets/SFX/menu-music.wav')
+

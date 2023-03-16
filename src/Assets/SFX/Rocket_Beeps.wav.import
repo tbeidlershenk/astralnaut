@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Rocket_Beeps.wav-cc77d2c06eeab015ed6c4b4781280693.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Rocket_Beeps.wav"
+dest_files=[ "res://.import/Rocket_Beeps.wav-cc77d2c06eeab015ed6c4b4781280693.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

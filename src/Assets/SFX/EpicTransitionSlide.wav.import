@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/EpicTransitionSlide.wav-d0f3d9e068c928286e19b52976e4a070.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/EpicTransitionSlide.wav"
+dest_files=[ "res://.import/EpicTransitionSlide.wav-d0f3d9e068c928286e19b52976e4a070.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

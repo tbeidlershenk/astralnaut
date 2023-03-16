@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/The Space Between.wav-26306e2ba9eb3c2b576899bf2583039b.sample"
+
+[deps]
+
+source_file="res://Resources/SFX/The Space Between.wav"
+dest_files=[ "res://.import/The Space Between.wav-26306e2ba9eb3c2b576899bf2583039b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

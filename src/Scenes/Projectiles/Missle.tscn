@@ -4,6 +4,14 @@
 [ext_resource path="res://Assets/missle-spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Autoloads/Sounds.tscn" type="PackedScene" id=3]
 
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 7, 0, 7, 7 )
+
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
 region = Rect2( 14, 0, 7, 7 )
@@ -24,29 +32,21 @@ region = Rect2( 7, 7, 7, 7 )
 atlas = ExtResource( 2 )
 region = Rect2( 14, 7, 7, 7 )
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 7, 7 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 2 )
-region = Rect2( 7, 0, 7, 7 )
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
-"loop": false,
-"name": "death",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": false,
+"name": "death",
+"speed": 10.0
 } ]
 
 [sub_resource type="CircleShape2D" id=12]
-radius = 30.0167
+radius = 48.0104
 
 [node name="Missle" type="Area2D"]
 script = ExtResource( 1 )

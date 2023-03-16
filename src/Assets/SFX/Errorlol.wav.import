@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Errorlol.wav-43d3e44f28245d0c175fcad617e1739f.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Errorlol.wav"
+dest_files=[ "res://.import/Errorlol.wav-43d3e44f28245d0c175fcad617e1739f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

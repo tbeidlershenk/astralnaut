@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Rocket_ThisDefWontLineUpRight.wav-e7c3d01f77496298b1604e7ba1517a36.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Rocket_ThisDefWontLineUpRight.wav"
+dest_files=[ "res://.import/Rocket_ThisDefWontLineUpRight.wav-e7c3d01f77496298b1604e7ba1517a36.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

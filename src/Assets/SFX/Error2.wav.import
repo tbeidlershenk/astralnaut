@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Error2.wav-900a3a2b428088fb3e5105d9cd91f814.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Error2.wav"
+dest_files=[ "res://.import/Error2.wav-900a3a2b428088fb3e5105d9cd91f814.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

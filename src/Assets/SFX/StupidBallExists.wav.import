@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/StupidBallExists.wav-30d537a1423ab1c29c4607f29cf8dd32.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/StupidBallExists.wav"
+dest_files=[ "res://.import/StupidBallExists.wav-30d537a1423ab1c29c4607f29cf8dd32.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
